@@ -8,7 +8,10 @@ import hello.core.member.MemberServiceImpl;
 public class MemberApp {
     public static void main(String[] args) {
 
-        MemberService memberService = new MemberServiceImpl();
+        // AppConfig 사용: 객체 생성이후 메서드를 통해 객체를 반환받아서 사용한다.
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+
         Member member = new Member(1L,"memberA", Grade.VIP);
         memberService.join(member);
 
