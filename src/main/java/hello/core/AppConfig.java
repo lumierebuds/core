@@ -9,27 +9,30 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.nio.file.FileStore;
 
-// AppConfig: 애플리케이션 전체에 적용하는 설정에 해당한다.
+@Configuration
 public class AppConfig {
 
+    @Bean
     public MemberService memberService(){
         // 생성자 주입: 생성자를 통해 생성된 객체가 들어간다해서 불리는 용어
         return new MemberServiceImpl(memberRepository());
     }
 
-
+    @Bean
     public OrderService orderService(){
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
-
+    @Bean
     public MemberRepository memberRepository() {
         return new MemoryMemberRepository();
     }
-
+    @Bean
     public DiscountPolicy discountPolicy() {
 //        return new FixDiscountPolicy();
         return new RateDiscountPolicy();
