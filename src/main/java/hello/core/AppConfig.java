@@ -17,7 +17,7 @@ import java.nio.file.FileStore;
 @Configuration
 public class AppConfig {
 
-    @Bean
+    @Bean()
     public MemberService memberService(){
         // 생성자 주입: 생성자를 통해 생성된 객체가 들어간다해서 불리는 용어
         return new MemberServiceImpl(memberRepository());
